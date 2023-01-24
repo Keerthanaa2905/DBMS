@@ -1,0 +1,72 @@
+mysql> DESC student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Regno    | int(3)      | NO   | PRI | 0       |       |
+| name     | varchar(15) | YES  |     | NULL    |       |
+| gender   | varchar(1)  | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| mobileno | int(10)     | YES  |     | NULL    |       |
+| emis     | int(30)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> INSERT INTO student('122','divya','f','2004-03-21','27352617','7376437643');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''122','divya','f','2004-03-21','27352617','7376437643')' at line 1
+mysql> INSERT INTO student VALUES('122','divya','f','2004-03-21','27352617','7376437643');
+ERROR 1264 (22003): Out of range value for column 'emis' at row 1
+mysql> INSERT INTO student VALUES('122','divya','f','2004-03-21','27352617','73764');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee;
+ERROR 1146 (42S02): Table 'student.employee' doesn't exist
+mysql> select * from student;
++-------+------------+--------+------------+-----------+----------+
+| Regno | name       | gender | dob        | mobileno  | emis     |
++-------+------------+--------+------------+-----------+----------+
+|   122 | divya      | f      | 2004-03-21 |  27352617 |    73764 |
+|  1234 | KEERTHANAA | F      | 2005-05-29 | 944565599 | 26346282 |
++-------+------------+--------+------------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> update student set regno=1223 where name='divya';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++-------+------------+--------+------------+-----------+----------+
+| Regno | name       | gender | dob        | mobileno  | emis     |
++-------+------------+--------+------------+-----------+----------+
+|  1223 | divya      | f      | 2004-03-21 |  27352617 |    73764 |
+|  1234 | KEERTHANAA | F      | 2005-05-29 | 944565599 | 26346282 |
++-------+------------+--------+------------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES('7349','VIGNESH','M','2010-09-13','92738362','6363563');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-------+------------+--------+------------+-----------+----------+
+| Regno | name       | gender | dob        | mobileno  | emis     |
++-------+------------+--------+------------+-----------+----------+
+|  1223 | divya      | f      | 2004-03-21 |  27352617 |    73764 |
+|  1234 | KEERTHANAA | F      | 2005-05-29 | 944565599 | 26346282 |
+|  7349 | VIGNESH    | M      | 2010-09-13 |  92738362 |  6363563 |
++-------+------------+--------+------------+-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from student where name='divya';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> selct * from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct * from employee' at line 1
+mysql> selct * from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct * from student' at line 1
+mysql> select * from student;
++-------+------------+--------+------------+-----------+----------+
+| Regno | name       | gender | dob        | mobileno  | emis     |
++-------+------------+--------+------------+-----------+----------+
+|  1234 | KEERTHANAA | F      | 2005-05-29 | 944565599 | 26346282 |
+|  7349 | VIGNESH    | M      | 2010-09-13 |  92738362 |  6363563 |
++-------+------------+--------+------------+-----------+----------+
+2 rows in set (0.00 sec)
